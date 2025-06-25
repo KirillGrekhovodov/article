@@ -22,6 +22,7 @@ def create_article(request):
         return render(request, 'create_article.html')
 
 
+
 def article_detail(request, *args, pk, **kwargs):
     article = get_object_or_404(Article, pk=pk)
     return render(request, 'detail_article.html', {"article": article})
