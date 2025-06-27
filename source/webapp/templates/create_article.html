@@ -20,6 +20,11 @@
         <label>Author:</label><br/>
         <input type="text" name="author"/><br/>
         <br/>
+        <select name="blog_id" id="">
+            {% for blog in blogs %}
+                <option value="{{ blog.id }}">{{ blog.title }}</option>
+            {% endfor %}
+        </select>
         <input type="submit" value="Send"/>
     </form>
 {% endblock %}
