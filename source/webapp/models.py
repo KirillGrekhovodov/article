@@ -10,6 +10,7 @@ class Article(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата редактирования')
     status = models.CharField(max_length=20, verbose_name="Статус", choices=statuses, default=statuses[0][0])
+    published_at = models.DateTimeField(null=True, blank=True, verbose_name='Дата публикация' )
 
     def __str__(self):
         return f"{self.id} - {self.title}"
