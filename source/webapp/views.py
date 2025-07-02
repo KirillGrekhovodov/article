@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
 from webapp.forms import ArticleForm
-# from django.http import HttpResponseRedirect, HttpResponseNotFound, Http404
 
 from webapp.models import Article, Blog
 
@@ -16,14 +15,7 @@ def create_article(request):
     if request.method == "POST":
         form = ArticleForm(request.POST)
         if form.is_valid():
-            title = form.cleaned_data.get('title')
-            content = form.cleaned_data.get('content')
-            author = form.cleaned_data.get('author')
-            status = form.cleaned_data.get('status')
-            blog = form.cleaned_data.get('blog')
-            published_at = form.cleaned_data.get('published_at')
-            article = Article.objects.create(title=title, content=content, author=author, status=status, blog=blog,
-                                             published_at=published_at)
+            article = form.save()
             return redirect("article-detail", pk=article.pk)
         else:
             return render(request, 'create_article.html', {"form": form})
@@ -37,25 +29,12 @@ def update_article(request, *args, pk, **kwargs):
     if request.method == "POST":
         form = ArticleForm(request.POST)
         if form.is_valid():
-            article.title = form.cleaned_data.get('title')
-            article.content = form.cleaned_data.get('content')
-            article.author = form.cleaned_data.get('author')
-            article.status = form.cleaned_data.get('status')
-            article.blog = form.cleaned_data.get('blog')
-            article.published_at = form.cleaned_data.get('published_at')
-            article.save()
+            article = form.save()
             return redirect("article-detail", pk=article.pk)
         else:
             return render(request, 'update_article.html', {"form": form})
     else:
-        form = ArticleForm(initial={
-            "title": article.title,
-            "content": article.content,
-            "author": article.author,
-            "status": article.status,
-            "blog": article.blog,
-            "published_at": article.published_at,
-        })
+        form = ArticleForm(instance=article)
         return render(request, 'update_article.html', {"form": form})
 
 
