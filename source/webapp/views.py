@@ -20,7 +20,10 @@ def create_article(request):
             content = form.cleaned_data.get('content')
             author = form.cleaned_data.get('author')
             status = form.cleaned_data.get('status')
-            article = Article.objects.create(title=title, content=content, author=author, status=status)
+            blog = form.cleaned_data.get('blog')
+            published_at = form.cleaned_data.get('published_at')
+            article = Article.objects.create(title=title, content=content, author=author, status=status, blog=blog,
+                                             published_at=published_at)
             return redirect("article-detail", pk=article.pk)
         else:
             return render(request, 'create_article.html', {"form": form})
@@ -38,6 +41,8 @@ def update_article(request, *args, pk, **kwargs):
             article.content = form.cleaned_data.get('content')
             article.author = form.cleaned_data.get('author')
             article.status = form.cleaned_data.get('status')
+            article.blog = form.cleaned_data.get('blog')
+            article.published_at = form.cleaned_data.get('published_at')
             article.save()
             return redirect("article-detail", pk=article.pk)
         else:
@@ -48,8 +53,11 @@ def update_article(request, *args, pk, **kwargs):
             "content": article.content,
             "author": article.author,
             "status": article.status,
+            "blog": article.blog,
+            "published_at": article.published_at,
         })
         return render(request, 'update_article.html', {"form": form})
+
 
 def delete_article(request, *args, pk, **kwargs):
     article = get_object_or_404(Article, pk=pk)
@@ -63,4 +71,3 @@ def delete_article(request, *args, pk, **kwargs):
 def detail_article(request, *args, pk, **kwargs):
     article = get_object_or_404(Article, pk=pk)
     return render(request, 'detail_article.html', {"article": article})
-
