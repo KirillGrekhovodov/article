@@ -58,17 +58,19 @@ from webapp.models import statuses, Blog, Article
 #         return super().clean()
 
 class ArticleForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+
+
     class Meta:
         model = Article
         # exclude = ['created_at', 'updated_at', ]
-        fields = ['title', 'author', 'content', 'blog', 'published_at']
+        fields = ['title', 'author', 'content', 'status', 'blog', 'published_at']
         widgets = {
-            "published_at": widgets.DateTimeInput(attrs={"class": "form-control", "type": "datetime-local"}),
-            "title": widgets.Input(attrs={"class": "form-control"}),
-            "author": widgets.Input(attrs={"class": "form-control"}),
-            "content": widgets.Textarea(attrs={"cols": "20", "rows": "5", "class": "form-control"}),
-            "status": widgets.Select(attrs={"class": "form-control"}),
-            "blog": widgets.Select(attrs={"class": "form-control"}),
+            "published_at": widgets.DateTimeInput(attrs={"type": "datetime-local"}),
         }
         error_messages = {"title": {"required": "Please enter title"}}
 
