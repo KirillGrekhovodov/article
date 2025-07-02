@@ -11,6 +11,9 @@
         <p>Автор - {{article.author}}</p>
         <p>Дата создания - {{article.created_at}} </p>
         <p>Статус - {{ article.get_status_display }} </p>
+        <p>Блог - {{ article.blog.title }}</p>
+
+{#        <p>{{ article.blog.articles.all }}</p>#}
         <hr/>
     </div>
 {% endblock %}

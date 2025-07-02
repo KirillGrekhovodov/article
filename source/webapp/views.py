@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 # from django.http import HttpResponseRedirect, HttpResponseNotFound, Http404
 
-from webapp.models import Article
+from webapp.models import Article, Blog
 
 
 # Create your views here.
@@ -15,11 +15,14 @@ def create_article(request):
         title = request.POST.get('title')
         content = request.POST.get('content')
         author = request.POST.get('author')
-        article = Article.objects.create(title=title, content=content, author=author)
-        # return HttpResponseRedirect("/")
+        blog_id = request.POST.get('blog_id')
+        # blog = Blog.objects.filter(title=blog_title).first()
+        article = Article.objects.create(title=title, content=content, author=author, blog_id=blog_id)
+
         return redirect("article-detail", pk=article.pk)
     else:
-        return render(request, 'create_article.html')
+        blogs = Blog.objects.all()
+        return render(request, 'create_article.html', {"blogs": blogs})
 
 
 
