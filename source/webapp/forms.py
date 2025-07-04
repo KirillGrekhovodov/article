@@ -76,7 +76,7 @@ class ArticleForm(forms.ModelForm):
 
     def clean_published_at(self):
         published_at = self.cleaned_data['published_at']
-        if published_at < timezone.now():
+        if published_at and published_at < timezone.now():
             raise ValidationError("Published date must be in the future")
         return published_at
 
