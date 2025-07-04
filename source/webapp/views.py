@@ -27,7 +27,7 @@ def create_article(request):
 def update_article(request, *args, pk, **kwargs):
     article = get_object_or_404(Article, pk=pk)
     if request.method == "POST":
-        form = ArticleForm(request.POST)
+        form = ArticleForm(request.POST, instance=article)
         if form.is_valid():
             article = form.save()
             return redirect("article-detail", pk=article.pk)
