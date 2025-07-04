@@ -5,7 +5,7 @@ from webapp.views import index, create_article, detail_article, update_article, 
 urlpatterns = [
     path('', index, name='index'),
     path('add-article/', create_article, name='add-article'),
-    path('article/<int:pk>/', detail_article, name='article-detail'),
+    path('article/<slug:slug>/', detail_article, name='article-detail'),
 
     path('article/<int:pk>/update/', update_article, name='article-update'),
 

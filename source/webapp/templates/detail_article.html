@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load shorten_text %}
 
 {% block title %}
     <title>{{ article.title }}</title>
@@ -19,12 +20,13 @@
 
 {% block content %}
     <div class="article">
-        <h1>Название - {{ article.title }}</h1>
-        <p>Контент - {{ article.content }}</p>
+        <p>{{ article.upper_title }}</p>
+        <h1>Название - {{ article.title|shorten:10 }}</h1>
+        <p>Контент - {{ article.content|shorten:2 }}</p>
         <p>Автор - {{ article.author }}</p>
-        <p>Дата создания - {{ article.created_at }} </p>
+        <p>Дата создания - {{ article.created_at|date:"Y-m-d H:i:s"}} </p>
         <p>Статус - {{ article.get_status_display }} </p>
-        <p>Блог - {{ article.blog.title }}</p>
+        <p>Блог - {{ article.blog.title|default:"не указан" }}</p>
 
 {#        <p>{{ article.blog.articles.all }}</p>#}
         <hr/>

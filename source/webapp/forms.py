@@ -64,7 +64,6 @@ class ArticleForm(forms.ModelForm):
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
 
-
     class Meta:
         model = Article
         # exclude = ['created_at', 'updated_at', ]
