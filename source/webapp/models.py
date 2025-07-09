@@ -16,15 +16,7 @@ class Article(BaseCreateUpdateModel):
     content = models.TextField(verbose_name='Контент')
     author = models.CharField(max_length=50, verbose_name='Автор', null=False, blank=False)
     status = models.CharField(max_length=20, verbose_name="Статус", choices=statuses, default=statuses[0][0])
-    # tags = models.ManyToManyField("webapp.Tag", verbose_name='Теги', related_name='articles', blank=True)
-    tags = models.ManyToManyField(
-        "webapp.Tag",
-        verbose_name='Теги',
-        related_name='articles',
-        blank=True,
-        through='webapp.ArticleTag',
-        through_fields=("article", "tag"),
-    )
+    tags = models.ManyToManyField("webapp.Tag", verbose_name='Теги', related_name='articles', blank=True)
 
     def __str__(self):
         return f"{self.id} - {self.title}"
@@ -61,8 +53,3 @@ class Tag(BaseCreateUpdateModel):
         db_table = 'tags'
         verbose_name = 'Тэг'
         verbose_name_plural = "Тэги"
-
-
-class ArticleTag(BaseCreateUpdateModel):
-    article = models.ForeignKey('webapp.Article', related_name='articles_tags', on_delete=models.CASCADE,)
-    tag = models.ForeignKey('webapp.Tag', related_name='tags_articles', on_delete=models.CASCADE,)
