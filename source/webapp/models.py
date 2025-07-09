@@ -16,7 +16,7 @@ class Article(BaseCreateUpdateModel):
     content = models.TextField(verbose_name='Контент')
     author = models.CharField(max_length=50, verbose_name='Автор', null=False, blank=False)
     status = models.CharField(max_length=20, verbose_name="Статус", choices=statuses, default=statuses[0][0])
-    tags = models.ManyToManyField("webapp.Tag", verbose_name='Теги', related_name='articles', blank=True)
+    tags = models.CharField(max_length=500, verbose_name='Теги', null=True, blank=True)
 
     def __str__(self):
         return f"{self.id} - {self.title}"
@@ -42,14 +42,3 @@ class Comment(BaseCreateUpdateModel):
         verbose_name_plural = "Комментарии"
 
 
-class Tag(BaseCreateUpdateModel):
-    title = models.CharField(max_length=50, verbose_name='Название', null=False, blank=False, unique=True)
-    # articles = models.ManyToManyField("webapp.Article", verbose_name='Статьи', related_name='tags', blank=True)
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        db_table = 'tags'
-        verbose_name = 'Тэг'
-        verbose_name_plural = "Тэги"

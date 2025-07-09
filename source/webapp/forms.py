@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import widgets
 
-from webapp.models import statuses, Tag
+from webapp.models import statuses
 
 
 class ArticleForm(forms.Form):
@@ -16,4 +16,4 @@ class ArticleForm(forms.Form):
     author = forms.CharField(max_length=5, required=True, label='Author', widget=widgets.Input(attrs={"class": "form-control"}))
     content = forms.CharField(widget=forms.Textarea(attrs={"cols": "20", "rows": "5", "class": "form-control"}), required=True, label='Content')
     status = forms.ChoiceField(choices=statuses, widget=widgets.Select(attrs={"class": "form-control"}),)
-    tags = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), widget=widgets.SelectMultiple(attrs={"class": "form-control"}), required=False)
+    tags = forms.CharField(max_length=500, required=True, label='Теги', widget=widgets.Input(attrs={"class": "form-control"}))

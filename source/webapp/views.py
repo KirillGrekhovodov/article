@@ -26,8 +26,8 @@ class CreateView(View):
             author = form.cleaned_data.get('author')
             status = form.cleaned_data.get('status')
             tags = form.cleaned_data.get('tags')
-            article = Article.objects.create(title=title, content=content, author=author, status=status)
-            article.tags.set(tags)
+            article = Article.objects.create(title=title, content=content, author=author, status=status, tags=tags)
+            # article.tags.set(tags)
             return redirect("article-detail", pk=article.pk)
         else:
             return render(request, 'create_article.html', {"form": form})
@@ -46,8 +46,9 @@ def update_article(request, *args, pk, **kwargs):
             article.content = form.cleaned_data.get('content')
             article.author = form.cleaned_data.get('author')
             article.status = form.cleaned_data.get('status')
+            article.tags = form.cleaned_data.get('tags')
             article.save()
-            article.tags.set(form.cleaned_data.get('tags'))
+            # article.tags.set(form.cleaned_data.get('tags'))
             return redirect("article-detail", pk=article.pk)
         else:
             return render(request, 'update_article.html', {"form": form})
@@ -57,7 +58,7 @@ def update_article(request, *args, pk, **kwargs):
             "content": article.content,
             "author": article.author,
             "status": article.status,
-            "tags": article.tags.all()
+            "tags": article.tags
         })
         return render(request, 'update_article.html', {"form": form})
 
