@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+
     {% include "partial/simple_search.html" with form=search_form %}
     <div class="row mt-3">
         {% for article in articles %}

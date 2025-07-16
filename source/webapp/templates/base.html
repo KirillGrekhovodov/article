@@ -37,6 +37,9 @@
 
 
 <div class="container">
+{% for tag in tags %}
+    <a href="{% url 'index' %}?tag={{ tag }}">{{ tag }}</a>
+{% endfor %}
     {% block content %}
         Base html
     {% endblock %}

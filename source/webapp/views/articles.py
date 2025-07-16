@@ -18,20 +18,30 @@ class ArticleListView(ListView):
     def dispatch(self, request, *args, **kwargs):
         self.form = self.get_search_form()
         self.search_value = self.get_search_value()
+        self.tag = self.request.GET.get('tag')
         return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
         queryset = super().get_queryset()
         if self.search_value:
             queryset = queryset.filter(Q(title__icontains=self.search_value) | Q(author__icontains=self.search_value))
+        if self.tag:
+            queryset = queryset.filter(tags__title=self.tag).distinct()
         return queryset
 
     def get_context_data(self, *, object_list=None, **kwargs):
         result = super().get_context_data(**kwargs)
         result['search_form'] = self.form
+        query_params = {}
         if self.search_value:
-            result["query"] = urlencode({"search": self.search_value})
+            query_params.update({"search": self.search_value})
             result['search'] = self.search_value
+        if self.tag:
+            query_params.update({"tag": self.tag})
+            result['tag'] = self.tag
+
+        if query_params:
+            result['query'] = urlencode(query_params)
         return result
 
     def get_search_form(self):

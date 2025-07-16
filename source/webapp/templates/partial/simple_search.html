@@ -1,5 +1,6 @@
 <form class="text-center" method="GET">
     <label for="{{ form.search.id_for_label }}">{{ form.search.label }}:</label>
     {{ form.search }}
+    <input type="hidden" name="tag" value="{{ tag }}">
     <input type="submit" value="Поиск">
 </form>
