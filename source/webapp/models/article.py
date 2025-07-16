@@ -1,5 +1,6 @@
 from django.db import models
 
+from webapp.managers import ArticleManager
 from webapp.models.base_create_update import BaseCreateUpdateModel
 
 statuses = [("new", "Новая"), ("moderated", "Модерированная"), ("deleted", "Удаленные")]
@@ -18,6 +19,8 @@ class Article(BaseCreateUpdateModel):
         through='webapp.ArticleTag',
         through_fields=("article", "tag"),
     )
+
+    objects = ArticleManager()
 
     def __str__(self):
         return f"{self.id} - {self.title}"

@@ -32,3 +32,23 @@ class ArticleForm(forms.ModelForm):
         if title and content and title == content:
             raise ValidationError("Название и контент не могут быть одинаковыми")
         return self.cleaned_data
+
+
+class DeleteArticleForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        self.origin_title = kwargs.pop('origin_title', None)
+        super().__init__(*args, **kwargs)
+
+
+    class Meta:
+        model = Article
+        fields = ('title',)
+
+
+    def clean_title(self):
+        title = self.cleaned_data['title']
+        print(title, self.origin_title)
+        if title != self.origin_title:
+            raise ValidationError("Название не совпадает")
+        return title

@@ -4,6 +4,7 @@ from django.utils.http import urlencode
 from django.views.generic import FormView, ListView, DetailView
 
 from webapp.forms import ArticleForm, SearchForm
+from webapp.forms.articles import DeleteArticleForm
 
 from webapp.models import Article
 
@@ -90,10 +91,17 @@ class UpdateArticleView(FormView):
 def delete_article(request, *args, pk, **kwargs):
     article = get_object_or_404(Article, pk=pk)
     if request.method == "POST":
-        article.delete()
-        return redirect("index")
+        form = DeleteArticleForm(request.POST, origin_title=article.title)
+        if form.is_valid():
+        # title = request.POST.get('title')
+        # if title == article.title:
+            article.delete()
+            return redirect("index")
+        # form.errors['title'] = ["Не совпадают названия"]
+        return render(request, 'articles/delete_article.html', {"article": article, "form": form})
     else:
-        return render(request, 'articles/delete_article.html', {"article": article})
+        form = DeleteArticleForm()
+        return render(request, 'articles/delete_article.html', {"article": article, "form": form})
 
 
 class DetailArticleView(DetailView):

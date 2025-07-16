@@ -3,9 +3,8 @@
 {% block content %}
 
     <form action="" method="post">
-        {% csrf_token %}
-        <p>Вы действительно хотите удалить статью {{ article.title }}?</p>
+        <p>Чтобы удалить статью введите ее название: {{ article.title }}?</p>
+        {% include 'partial/article_form.html' with button_text="yes" %}
         <a class="btn" href="{% url 'index' %}">Cancel</a>
-        <button class="btn"  type="submit">Yes</button>
     </form>
 {% endblock %}
