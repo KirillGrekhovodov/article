@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'webapp:add-project' %}">Create</a>
+    </li>
+
+{% endblock %}
+
+{% block content %}
+    {% for project in projects %}
+        {{ project.title }}
+
+        <a href="{% url 'webapp:project-detail' project.pk %}"
+           class="card-link btn btn-primary">Detail</a>
+    {% endfor %}
+{% endblock %}

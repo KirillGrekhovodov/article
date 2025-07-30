@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>{{ project.title }}</title>
+{% endblock %}
+
+
+{% block nav %}
+    {#    <li class="nav-item">#}
+    {#        <a class="nav-link active" aria-current="page" href="{% url 'webapp:article-update' article.pk %}">Update article</a>#}
+    {#    </li>#}
+    {#    <li class="nav-item">#}
+    {#        <a class="nav-link active" aria-current="page" href="{% url 'webapp:article-delete' article.pk %}">Delete article</a>#}
+    {#    </li>#}
+    {% if perms.webapp.add_users_in_project and user in project.users.all %}
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'webapp:project-add-users' project.pk %}">Add
+                users</a>
+        </li>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="article">
+        <h1>Название - {{ project.title }}</h1>
+
+        <h5>Comment</h5>
+        {% for user in project.users.all %}
+            <div class="card">
+                <p>{{ user.username }}</p>
+            </div>
+
+        {% endfor %}
+    </div>
+{% endblock %}

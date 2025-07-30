@@ -33,6 +33,9 @@
                                 article</a>
                         </li>
                     {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'webapp:project-list' %}">Projects</a>
+                    </li>
                 {% endblock %}
 
                 {% if user.is_authenticated %}
@@ -43,15 +46,18 @@
                         </form>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'accounts:profile' user.pk %}">Hello {{ user.username }}</a>
+                        <a class="nav-link active" aria-current="page"
+                           href="{% url 'accounts:profile' user.pk %}">Hello {{ user.username }}</a>
                     </li>
 
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'accounts:login' %}?next={{ request.get_full_path }}">Login</a>
+                        <a class="nav-link active" aria-current="page"
+                           href="{% url 'accounts:login' %}?next={{ request.get_full_path }}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'accounts:registration' %}?next={{ request.get_full_path }}">Registration</a>
+                        <a class="nav-link active" aria-current="page"
+                           href="{% url 'accounts:registration' %}?next={{ request.get_full_path }}">Registration</a>
                     </li>
                 {% endif %}
             </ul>
