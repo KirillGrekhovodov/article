@@ -17,6 +17,8 @@
                         <a href="{% url 'webapp:article-delete' article.pk %}"
                            class="card-link btn btn-primary">Delete</a>
                     {% endif %}
+                    <p class="testJs">start text</p>
+                    <a href="{% url 'webapp:test-js' article.pk %}" data-article-id="{{ article.id }}" data-test-js="js">Тест JS</a>
                 </div>
             </div>
         </div>

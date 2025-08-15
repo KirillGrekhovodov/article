@@ -10,36 +10,42 @@
         <a class="nav-link active" aria-current="page" href="{% url 'webapp:add-article' %}">Create article</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="{% url 'webapp:article-update' article.pk %}">Update article</a>
+        <a class="nav-link active" aria-current="page" href="{% url 'webapp:article-update' article.pk %}">Update
+            article</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="{% url 'webapp:article-delete' article.pk %}">Delete article</a>
+        <a class="nav-link active" aria-current="page" href="{% url 'webapp:article-delete' article.pk %}">Delete
+            article</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="{% url 'webapp:add-comment' article.pk %}">Create comment</a>
+        <a class="nav-link active" aria-current="page" href="{% url 'webapp:add-comment' article.pk %}">Create
+            comment</a>
     </li>
 {% endblock %}
 
 {% block content %}
-    <div class="article">
+    <div class="article" id="article_{{ article.id }}">
         <h1>Название - {{ article.title }}</h1>
         <p>Контент - {{ article.content }}</p>
         <p>Автор - {{ article.author }}</p>
         <p>Дата создания - {{ article.created_at }} </p>
         <p>Статус - {{ article.get_status_display }} </p>
+        <p class="testJs">start text</p>
+        <a href="{% url 'webapp:test-js' article.pk %}" data-article-id="{{ article.id }}" data-test-js="js">Тест JS</a>
         <hr/>
         <h5>Tags</h5>
         {% for tag in article.tags.all %}
             {% if forloop.last %} {{ tag }}. {% else %} {{ tag }}, {% endif %}
         {% endfor %}
 
+
         <h5>Comment</h5>
         {% for comment in comments %}
-            <div class="card">
+            <div class="card" id="comment_{{ comment.id }}">
                 <p>{{ comment.text }}</p>
                 <a href="{% url 'webapp:comment-update' comment.pk %}">Update</a>
                 <a href="{% url 'webapp:comment-delete' comment.pk %}">Delete</a>
-            
+
             </div>
 
         {% endfor %}

@@ -1,9 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.db.models import Q
+from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.http import urlencode
+from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from webapp.forms import ArticleForm, SearchForm
@@ -57,7 +59,7 @@ class CreateArticleView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class UpdateArticleView(PermissionRequiredMixin ,UpdateView):
+class UpdateArticleView(PermissionRequiredMixin, UpdateView):
     template_name = 'articles/update_article.html'
     form_class = ArticleForm
     model = Article
@@ -87,13 +89,17 @@ class DeleteArticleView(PermissionRequiredMixin, DeleteView):
         return super().has_permission() or self.request.user == self.get_object().author
 
 
-
 class DetailArticleView(DetailView):
     template_name = 'articles/detail_article.html'
     model = Article
-
 
     def get_context_data(self, **kwargs):
         result = super().get_context_data(**kwargs)
         result['comments'] = self.object.comments.order_by('-created_at')
         return result
+
+
+class JsTestView(View):
+    def get(self, request, *args,pk, **kwargs):
+        print(pk)
+        return JsonResponse({"test": "test", "test_list": ["111", "222"]})
