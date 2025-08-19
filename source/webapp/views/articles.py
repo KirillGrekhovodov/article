@@ -100,6 +100,14 @@ class DetailArticleView(DetailView):
 
 
 class JsTestView(View):
-    def get(self, request, *args,pk, **kwargs):
+    def post(self, request, *args,pk, **kwargs):
         print(pk)
-        return JsonResponse({"test": "test", "test_list": ["111", "222"]})
+        return JsonResponse({"test": "POST", "test_list": ["111", "222"]})
+
+    def delete(self, request, *args,pk, **kwargs):
+        print(pk)
+        return JsonResponse({"test": "DELETE", "test_list": ["111", "222"]})
+
+    def patch(self, request, *args,pk, **kwargs):
+        print(pk)
+        return JsonResponse({"test": "PATCH", "test_list": ["111", "222"]})
