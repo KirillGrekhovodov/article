@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.db.models import Q
@@ -117,5 +119,13 @@ class ArticleLikeView(View):
             return JsonResponse({"error": "Not found"}, status=404)
         article.likes.remove(request.user)
         return JsonResponse({"likes_count": article.likes.count()})
+
+
+
+class TestFormView(View):
+
+    def post(self, request, *args, **kwargs):
+        print(json.loads(request.body))
+        return JsonResponse({"success": "OK"})
 
 

@@ -5,6 +5,12 @@
 {% endblock %}
 
 {% block content %}
+    <form id="myForm" action="{% url 'webapp:test-form' %}" method="POST">
+        <input type="text">
+        <button>Тык</button>
+    </form>
+
+
     {% include "partial/simple_search.html" with form=search_form %}
     {% include "partial/articles_list.html" %}
 

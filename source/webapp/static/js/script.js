@@ -1,13 +1,20 @@
-async function makeRequest(url, method = 'GET') {
+async function makeRequest(url, method = 'GET', body = null) {
     let headers = {};
-    if (method !== 'GET'){
+    if (method !== 'GET') {
         const csrfToken = await getCookie('csrftoken');
         headers['X-CSRFToken'] = csrfToken;
     }
-    let response = await fetch(url, {
+
+    let requestOptions = {
         "method": method,
         "headers": headers,
-    })
+    }
+    if (body) {
+        requestOptions["body"] = body;
+    }
+
+
+    let response = await fetch(url, requestOptions)
     if (response.ok) {
         return await response.json();
     } else {
@@ -22,7 +29,7 @@ async function onClick(event) {
     let url = a.href;
     let buttonText = a.innerText;
     let method = 'POST';
-    if(buttonText === 'Дизлайк'){
+    if (buttonText === 'Дизлайк') {
         method = 'DELETE';
     }
     let response = await makeRequest(url, method);
@@ -36,6 +43,17 @@ function onLoad() {
     for (let link of links) {
         link.addEventListener("click", onClick);
     }
+
+    let form = document.getElementById("myForm");
+
+    form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        let input = event.target.children[0];
+        let value = input.value;
+        let url = event.target.action;
+        let data = {"text": value}
+        let response = await makeRequest(url, "POST", JSON.stringify(data));
+    })
 }
 
 function getCookie(name) {
