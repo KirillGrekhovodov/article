@@ -31,7 +31,16 @@
         <p>Дата создания - {{ article.created_at }} </p>
         <p>Статус - {{ article.get_status_display }} </p>
         <p class="testJs">start text</p>
-        <a href="{% url 'webapp:test-js' article.pk %}" data-article-id="{{ article.id }}" data-test-js="js">Тест JS</a>
+        <span>{{ article.likes.count }}</span>
+        {% if user.is_authenticated %}
+            <a href="{% url 'webapp:article-like' article.pk %}" data-article-id="{{ article.id }}"
+               data-like="like">
+                {% if user in article.likes.all %}
+                    Дизлайк
+                {% else %}
+                    Лайк
+                {% endif %}</a>
+        {% endif %}
         <hr/>
         <h5>Tags</h5>
         {% for tag in article.tags.all %}
@@ -45,9 +54,16 @@
                 <p>{{ comment.text }}</p>
                 <a href="{% url 'webapp:comment-update' comment.pk %}">Update</a>
                 <a href="{% url 'webapp:comment-delete' comment.pk %}">Delete</a>
-
+                <span>{{ comment.likes.count }}</span>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'webapp:comment-like' comment.pk %}" data-like="like">
+                        {% if user in comment.likes.all %}
+                            Дизлайк
+                        {% else %}
+                            Лайк
+                        {% endif %}</a>
+                {% endif %}
             </div>
-
         {% endfor %}
     </div>
 {% endblock %}

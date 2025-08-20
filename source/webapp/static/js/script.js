@@ -18,21 +18,21 @@ async function makeRequest(url, method = 'GET') {
 
 async function onClick(event) {
     event.preventDefault();
-    console.log(event.target);
     let a = event.target;
     let url = a.href;
-    let response = await makeRequest(url, 'PATCH');
-    let articleId = a.dataset['articleId'];
-    console.log(articleId);
-    // let span = document.createElement("span");
-    // span.innerText = response.test;
-    // a.parentElement.appendChild(span);
-    let p = a.parentElement.getElementsByClassName("testJs")[0];
-    p.innerHTML = response.test;
+    let buttonText = a.innerText;
+    let method = 'POST';
+    if(buttonText === 'Дизлайк'){
+        method = 'DELETE';
+    }
+    let response = await makeRequest(url, method);
+    let span = a.parentElement.getElementsByTagName("span")[0];
+    span.innerText = response.likes_count;
+    a.innerText = buttonText === 'Дизлайк' ? "Лайк" : "Дизлайк"
 }
 
 function onLoad() {
-    let links = document.querySelectorAll('[data-test-js="js"]');
+    let links = document.querySelectorAll('[data-like="like"]');
     for (let link of links) {
         link.addEventListener("click", onClick);
     }

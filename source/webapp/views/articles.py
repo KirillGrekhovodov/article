@@ -99,15 +99,23 @@ class DetailArticleView(DetailView):
         return result
 
 
-class JsTestView(View):
-    def post(self, request, *args,pk, **kwargs):
-        print(pk)
-        return JsonResponse({"test": "POST", "test_list": ["111", "222"]})
+class ArticleLikeView(View):
 
-    def delete(self, request, *args,pk, **kwargs):
-        print(pk)
-        return JsonResponse({"test": "DELETE", "test_list": ["111", "222"]})
+    def post(self, request, *args, pk, **kwargs):
+        try:
+            article = Article.objects.get(pk=pk)
+        except Article.DoesNotExist:
+            return JsonResponse({"error": "Not found"}, status=404)
+        article.likes.add(request.user)
+        return JsonResponse({"likes_count": article.likes.count()})
 
-    def patch(self, request, *args,pk, **kwargs):
-        print(pk)
-        return JsonResponse({"test": "PATCH", "test_list": ["111", "222"]})
+
+    def delete(self, request, *args, pk, **kwargs):
+        try:
+            article = Article.objects.get(pk=pk)
+        except Article.DoesNotExist:
+            return JsonResponse({"error": "Not found"}, status=404)
+        article.likes.remove(request.user)
+        return JsonResponse({"likes_count": article.likes.count()})
+
+
