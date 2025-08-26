@@ -503,7 +503,7 @@
         "updated_at": "2025-07-08T13:40:55.769Z",
         "article": 1,
         "text": "new text",
-        "author": 1
+        "author": 2
     }
 },
 {
@@ -514,7 +514,7 @@
         "updated_at": "2025-07-25T13:52:15.035Z",
         "article": 67,
         "text": "testestetsd",
-        "author": 3
+        "author": 1
     }
 },
 {
