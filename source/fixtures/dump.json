@@ -8,7 +8,8 @@
         "title": "статья1",
         "content": "контент1",
         "author": 1,
-        "status": "new"
+        "status": "new",
+        "tags": []
     }
 },
 {
@@ -20,7 +21,8 @@
         "title": "статья2",
         "content": "контент2",
         "author": 1,
-        "status": "moderated"
+        "status": "moderated",
+        "tags": []
     }
 },
 {
@@ -32,7 +34,8 @@
         "title": "тест",
         "content": "тест",
         "author": 1,
-        "status": "new"
+        "status": "new",
+        "tags": []
     }
 },
 {
@@ -44,7 +47,8 @@
         "title": "лалала",
         "content": "сывсвы",
         "author": 1,
-        "status": "new"
+        "status": "new",
+        "tags": []
     }
 },
 {
@@ -56,7 +60,8 @@
         "title": "Статья из консоли",
         "content": "test",
         "author": 1,
-        "status": "new"
+        "status": "new",
+        "tags": []
     }
 },
 {
@@ -68,7 +73,8 @@
         "title": "Статья из консоли333333",
         "content": "test",
         "author": 1,
-        "status": "new"
+        "status": "new",
+        "tags": []
     }
 },
 {
@@ -80,7 +86,8 @@
         "title": "11ww",
         "content": "1111xasxw",
         "author": 1,
-        "status": "new"
+        "status": "new",
+        "tags": []
     }
 },
 {
@@ -92,7 +99,8 @@
         "title": "444",
         "content": "cds",
         "author": 1,
-        "status": "moderated"
+        "status": "moderated",
+        "tags": []
     }
 },
 {
@@ -104,7 +112,8 @@
         "title": "vsd",
         "content": "dsv",
         "author": 1,
-        "status": "new"
+        "status": "new",
+        "tags": []
     }
 },
 {
@@ -116,7 +125,8 @@
         "title": "sdddd@mail.ru",
         "content": "s",
         "author": 1,
-        "status": "new"
+        "status": "new",
+        "tags": []
     }
 },
 {
@@ -128,7 +138,8 @@
         "title": "2222",
         "content": "cds",
         "author": 1,
-        "status": "moderated"
+        "status": "moderated",
+        "tags": []
     }
 },
 {
@@ -140,7 +151,8 @@
         "title": "333ssss",
         "content": "cds",
         "author": 1,
-        "status": "moderated"
+        "status": "moderated",
+        "tags": []
     }
 },
 {
@@ -152,7 +164,8 @@
         "title": "test article slug",
         "content": "sacsacsa",
         "author": 1,
-        "status": "moderated"
+        "status": "moderated",
+        "tags": []
     }
 },
 {
@@ -164,7 +177,8 @@
         "title": "статья для слага 1",
         "content": "свы",
         "author": 1,
-        "status": "moderated"
+        "status": "moderated",
+        "tags": []
     }
 },
 {
@@ -176,7 +190,8 @@
         "title": "статья тестируем новую функцию",
         "content": "мвы",
         "author": 1,
-        "status": "moderated"
+        "status": "moderated",
+        "tags": []
     }
 },
 {
@@ -188,7 +203,8 @@
         "title": "статья тестируем новую функцию1",
         "content": "свысвысвы",
         "author": 1,
-        "status": "moderated"
+        "status": "moderated",
+        "tags": []
     }
 },
 {
@@ -200,7 +216,8 @@
         "title": "vdsds",
         "content": "vdsvds",
         "author": 1,
-        "status": "new"
+        "status": "new",
+        "tags": []
     }
 },
 {
@@ -212,7 +229,8 @@
         "title": "vdsscacsacsads",
         "content": "vdsvds",
         "author": 1,
-        "status": "new"
+        "status": "new",
+        "tags": []
     }
 },
 {
@@ -224,7 +242,8 @@
         "title": "vdsscacsa1111csads",
         "content": "vdsvds",
         "author": 1,
-        "status": "new"
+        "status": "new",
+        "tags": []
     }
 },
 {
@@ -236,7 +255,8 @@
         "title": "New article 1111",
         "content": "cxsacsda",
         "author": 1,
-        "status": "new"
+        "status": "new",
+        "tags": []
     }
 },
 {
@@ -248,7 +268,8 @@
         "title": "dccds",
         "content": "cdscds",
         "author": 1,
-        "status": "deleted"
+        "status": "deleted",
+        "tags": []
     }
 },
 {
@@ -260,7 +281,8 @@
         "title": "Test tags",
         "content": "sxaxs",
         "author": 1,
-        "status": "moderated"
+        "status": "moderated",
+        "tags": []
     }
 },
 {
@@ -272,7 +294,8 @@
         "title": "cdscds",
         "content": "cdscds",
         "author": 1,
-        "status": "new"
+        "status": "new",
+        "tags": []
     }
 },
 {
@@ -284,7 +307,8 @@
         "title": "Article1",
         "content": "cascsacas",
         "author": 1,
-        "status": "moderated"
+        "status": "moderated",
+        "tags": []
     }
 },
 {
@@ -296,7 +320,8 @@
         "title": "Article2",
         "content": "cwescwds",
         "author": 1,
-        "status": "new"
+        "status": "new",
+        "tags": []
     }
 },
 {
@@ -308,7 +333,8 @@
         "title": "Article3",
         "content": "cwescwds",
         "author": 1,
-        "status": "new"
+        "status": "new",
+        "tags": []
     }
 },
 {
@@ -320,7 +346,8 @@
         "title": "Article4",
         "content": "csdcdscsd",
         "author": 1,
-        "status": "deleted"
+        "status": "deleted",
+        "tags": []
     }
 },
 {
@@ -332,7 +359,8 @@
         "title": "222211",
         "content": "11111",
         "author": 1,
-        "status": "new"
+        "status": "new",
+        "tags": []
     }
 },
 {
@@ -344,7 +372,105 @@
         "title": "xewdxew",
         "content": "dxewxew",
         "author": 4,
-        "status": "new"
+        "status": "new",
+        "tags": []
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 69,
+    "fields": {
+        "created_at": "2025-08-22T13:53:52.327Z",
+        "updated_at": "2025-08-22T13:53:52.328Z",
+        "title": "text text text",
+        "content": "content content",
+        "author": 1,
+        "status": "new",
+        "tags": []
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 70,
+    "fields": {
+        "created_at": "2025-08-22T13:53:58.640Z",
+        "updated_at": "2025-08-22T13:53:58.640Z",
+        "title": "text text text",
+        "content": "content content",
+        "author": 1,
+        "status": "new",
+        "tags": []
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 71,
+    "fields": {
+        "created_at": "2025-08-22T13:58:40.638Z",
+        "updated_at": "2025-08-22T13:58:40.638Z",
+        "title": "text text text",
+        "content": "content content",
+        "author": 1,
+        "status": "new",
+        "tags": []
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 72,
+    "fields": {
+        "created_at": "2025-08-22T14:00:31.089Z",
+        "updated_at": "2025-08-22T14:00:31.089Z",
+        "title": "text text text",
+        "content": "content content",
+        "author": 1,
+        "status": "new",
+        "tags": []
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 73,
+    "fields": {
+        "created_at": "2025-08-22T14:08:00.612Z",
+        "updated_at": "2025-08-22T14:28:13.097Z",
+        "title": "text text text",
+        "content": "content content",
+        "author": 6,
+        "status": "new",
+        "tags": [
+            2
+        ]
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 74,
+    "fields": {
+        "created_at": "2025-08-22T14:29:42.062Z",
+        "updated_at": "2025-08-22T14:29:42.062Z",
+        "title": "text text text",
+        "content": "content content",
+        "author": 6,
+        "status": "new",
+        "tags": [
+            2
+        ]
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 75,
+    "fields": {
+        "created_at": "2025-08-22T14:33:26.494Z",
+        "updated_at": "2025-08-22T14:33:26.494Z",
+        "title": "text text text",
+        "content": "content content",
+        "author": 6,
+        "status": "new",
+        "tags": [
+            2
+        ]
     }
 },
 {
@@ -700,6 +826,46 @@
         "updated_at": "2025-07-25T14:21:13.215Z",
         "article": 68,
         "tag": 3
+    }
+},
+{
+    "model": "webapp.articletag",
+    "pk": 38,
+    "fields": {
+        "created_at": "2025-08-22T14:00:31.096Z",
+        "updated_at": "2025-08-22T14:00:31.096Z",
+        "article": 72,
+        "tag": 2
+    }
+},
+{
+    "model": "webapp.articletag",
+    "pk": 39,
+    "fields": {
+        "created_at": "2025-08-22T14:00:31.096Z",
+        "updated_at": "2025-08-22T14:00:31.096Z",
+        "article": 72,
+        "tag": 7
+    }
+},
+{
+    "model": "webapp.articletag",
+    "pk": 42,
+    "fields": {
+        "created_at": "2025-08-22T14:16:54.848Z",
+        "updated_at": "2025-08-22T14:16:54.848Z",
+        "article": 73,
+        "tag": 2
+    }
+},
+{
+    "model": "webapp.articletag",
+    "pk": 43,
+    "fields": {
+        "created_at": "2025-08-22T14:16:54.848Z",
+        "updated_at": "2025-08-22T14:16:54.848Z",
+        "article": 73,
+        "tag": 7
     }
 }
 ]
