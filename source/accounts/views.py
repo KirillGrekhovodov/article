@@ -1,10 +1,13 @@
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.views import PasswordChangeView, LoginView, LogoutView
 from django.core.paginator import Paginator
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse
 from django.views.generic import CreateView, DetailView, UpdateView
+from rest_framework.authtoken.models import Token
+
 from accounts.forms import MyUserCreationForm
 from accounts.forms.user_creation_form import UserChangeForm, ProfileChangeForm
 from accounts.models import Profile
@@ -20,8 +23,11 @@ class RegisterView(CreateView):
     def form_valid(self, form):
         user = form.save()
         Profile.objects.create(user=user)
+        token, _ = Token.objects.get_or_create(user=user)
+        response = HttpResponseRedirect(self.get_success_url())
+        response.set_cookie('token', token.key)
         login(self.request, user)
-        return redirect(self.get_success_url())
+        return response
 
     def get_success_url(self):
         next = self.request.GET.get('next')
@@ -102,3 +108,24 @@ class UserPasswordChangeView(PermissionRequiredMixin, PasswordChangeView):
     def has_permission(self):
         user = get_object_or_404(User, pk=self.kwargs['pk'])
         return user == self.request.user
+
+
+class CustomLoginView(LoginView):
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        user = form.get_user()
+        token, _ = Token.objects.get_or_create(user=user)
+        response.set_cookie('token', token.key)
+        return response
+
+
+class CustomLogoutView(LoginRequiredMixin, LogoutView):
+
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        user.auth_token.delete()
+        response = super().post(request, *args, **kwargs)
+        response.delete_cookie('token')
+        return response
+

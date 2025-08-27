@@ -1,10 +1,12 @@
+from django.template.context_processors import request
 from rest_framework.decorators import action
-from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, SAFE_METHODS
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
 from api_v3.pagination import CustomPageNumberPagination
+from api_v3.permissions import IsOwnerOrReadOnly
 from api_v3.serializers import ArticleSerializer, ArticleShortSerializer, CommentSerializer
 from webapp.models import Article
 
@@ -17,7 +19,7 @@ class ArticleViewSet(ModelViewSet):
     serializer_class = ArticleSerializer
     pagination_class = CustomPageNumberPagination
     throttle_classes = []
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
@@ -30,6 +32,11 @@ class ArticleViewSet(ModelViewSet):
         if self.action == 'list':
             return ArticleShortSerializer
         return ArticleSerializer
+
+    # def get_permissions(self):
+    #     if self.request.method in SAFE_METHODS and self.action != 'get_comments':
+    #         return []
+    #     return [IsOwnerOrReadOnly()]
 
     @action(detail=True, methods=['GET'], url_path='comments')
     def get_comments(self, request, *args, **kwargs):

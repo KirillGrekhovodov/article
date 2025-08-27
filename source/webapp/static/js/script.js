@@ -1,5 +1,9 @@
 async function makeRequest(url, method = 'GET', body = null) {
-    let headers = {};
+    let headers = {
+        "Content-Type": "application/json",
+        "Authorization": "Token " + getCookie('token'),
+    };
+
     if (method !== 'GET') {
         const csrfToken = await getCookie('csrftoken');
         headers['X-CSRFToken'] = csrfToken;
@@ -19,6 +23,7 @@ async function makeRequest(url, method = 'GET', body = null) {
         return await response.json();
     } else {
         let error = await response.json()
+        console.log(error)
         throw new Error(error.message)
     }
 }
@@ -54,6 +59,16 @@ function onLoad() {
         let data = {"text": value}
         let response = await makeRequest(url, "POST", JSON.stringify(data));
     })
+
+    let p = document.getElementById("test-token");
+    p.addEventListener("click", async function (event) {
+        let response = await makeRequest("http://localhost:8000/api/v3/articles/", "POST", JSON.stringify({
+            "title": "tesssst",
+            "content": "test",
+        }));
+        console.log(response)
+    })
+
 }
 
 function getCookie(name) {
