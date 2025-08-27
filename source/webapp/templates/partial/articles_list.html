@@ -17,6 +17,16 @@
                         <a href="{% url 'webapp:article-delete' article.pk %}"
                            class="card-link btn btn-primary">Delete</a>
                     {% endif %}
+                    <span>{{ article.likes.count }}</span>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'webapp:article-like' article.pk %}" data-article-id="{{ article.id }}"
+                           data-like="like">
+                            {% if user in article.likes.all %}
+                                Дизлайк
+                            {% else %}
+                                Лайк
+                            {% endif %}</a>
+                    {% endif %}
                 </div>
             </div>
         </div>

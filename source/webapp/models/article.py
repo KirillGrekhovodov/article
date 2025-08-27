@@ -19,6 +19,8 @@ class Article(BaseCreateUpdateModel):
         blank=True
     )
 
+    likes = models.ManyToManyField(get_user_model(), related_name="articles_likes")
+
     def __str__(self):
         return f"{self.id} - {self.title}"
 
